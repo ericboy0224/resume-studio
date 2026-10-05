@@ -1,6 +1,7 @@
+/* margin: 0 removes the browser header and footer (date, title, URL, page number). */
 @page {
   size: A4;
-  margin: 14mm 16mm;
+  margin: 0;
 }
 
 body {
@@ -45,11 +46,14 @@ p { margin: 2px 0; }
 .period { color: #555; font-size: 9pt; }
 ul { margin: 2px 0; padding-left: 18px; }
 li { margin: 2px 0; }
-.item { break-inside: avoid-page; }
+/* Keep a heading with its first line and do not split a bullet. A whole job can span pages. */
+h2, h3, h4, .tagline, .period { break-after: avoid-page; }
+li { break-inside: avoid-page; }
 .error { color: #b00; white-space: pre-wrap; }
 
 @media print {
   body { background: none; }
   nav { display: none; }
-  main { width: auto; min-height: 0; margin: 0; padding: 0; }
+  /* clone repeats the padding on every printed page, so each page keeps its margin. */
+  main { width: auto; min-height: 0; margin: 0; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 }
