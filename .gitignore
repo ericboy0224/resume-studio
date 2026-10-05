@@ -1,0 +1,5 @@
+node_modules
+dist
+# Personal resumes stay local. Only the example is public.
+resumes/*.yaml
+!resumes/example.yaml
